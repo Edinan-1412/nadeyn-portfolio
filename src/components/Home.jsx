@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useMediaQuery } from 'react-responsive';
 import { Button } from './ui/button';
-import { ArrowRight, Github, Linkedin, Mail, Flower } from 'lucide-react';
+import { ArrowRight, Github, Linkedin, Mail } from 'lucide-react';
 import { Avatar, AvatarImage } from './ui/avatar';
 import Meteors from './magicui/meteors';
 
 const roles = ["Full Stack Developer", "Web Developer", "UI Designer"];
 
-const Home = () => {
+const Home = ({ setActiveSection }) => {
     const [currentRole, setCurrentRole] = useState(0);
     const isMobile = useMediaQuery({ maxWidth: 767 });
     const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 1023 });
@@ -67,19 +67,24 @@ const Home = () => {
                         A Software Engineering Student based in Bulacan, Philippines
                     </p>
                     <div className={`flex ${isMobile ? 'flex-col' : 'flex-row'} space-y-4 sm:space-y-0 sm:space-x-4 mb-8`}>
-                        <Button size={isMobile ? "default" : "lg"} variant="default" className="group">
+                        <Button size={isMobile ? "default" : "lg"} onClick={() => setActiveSection('projects')} variant="default" className="group">
                             View My Projects <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                         </Button>
-                        <Button size={isMobile ? "default" : "lg"} variant="outline" className="hover:bg-secondary/10">Contact Me</Button>
+                        <Button size={isMobile ? "default" : "lg"} onClick={() => setActiveSection('contact')} variant="outline" className="hover:bg-secondary/10">Contact Me</Button>
                     </div>
                     <div className="flex space-x-4">
-                        <Button variant="ghost" size="icon" className="hover:bg-primary/10 transition-colors">
+                        <Button
+                            variant="ghost"
+                            size="icon"
+                            className="hover:bg-primary/10 transition-colors"
+                        >
                             <Github className="h-6 w-6" />
                         </Button>
-                        <Button variant="ghost" size="icon" className="hover:bg-primary/10 transition-colors">
-                            <Linkedin className="h-6 w-6" />
-                        </Button>
-                        <Button variant="ghost" size="icon" className="hover:bg-primary/10 transition-colors">
+                        <Button
+                            variant="ghost"
+                            size="icon"
+                            className="hover:bg-primary/10 transition-colors"
+                        >
                             <Mail className="h-6 w-6" />
                         </Button>
                     </div>

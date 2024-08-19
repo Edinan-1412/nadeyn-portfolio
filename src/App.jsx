@@ -13,7 +13,7 @@ const App = () => {
   const renderActiveSection = () => {
     switch (activeSection) {
       case 'home':
-        return <Home />;
+        return <Home setActiveSection={setActiveSection} />;
       case 'about':
         return <About />;
       case 'education':
@@ -23,7 +23,7 @@ const App = () => {
       case 'contact':
         return <Contact />;
       default:
-        return <Home />;
+        return <Home setActiveSection={setActiveSection} />;
     }
   };
 
