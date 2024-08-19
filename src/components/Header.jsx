@@ -32,7 +32,6 @@ const Header = ({ setActiveSection, activeSection }) => {
                             <AvatarImage src="/images/aly.png" alt="Aly" />
                             <AvatarFallback>A</AvatarFallback>
                         </Avatar>
-                        <span className="font-bold text-lg md:text-xl">Nadine</span>
                     </motion.div>
 
                     {!isMobile && (

@@ -5,14 +5,20 @@ import { Button } from './ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { Badge } from './ui/badge';
 import { ArrowRight, Book, Code, Lightbulb, Award, Briefcase, Globe } from 'lucide-react';
+import GridPattern from './magicui/animated-grid-pattern';
 
 const About = () => {
     const isMobile = useMediaQuery({ maxWidth: 767 });
     const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 1023 });
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-background to-accent/10">
-            <div className="container mx-auto px-4 py-12">
+        <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-background to-accent/10 relative overflow-hidden">
+            <GridPattern
+                width={40}
+                height={40}
+                className="absolute inset-0 z-0 opacity-20"
+            />
+            <div className="container mx-auto px-4 py-12 relative z-10">
                 <motion.h1
                     className={`${isMobile ? 'text-4xl' : 'text-6xl'} font-extrabold text-center mb-12 bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary`}
                     initial={{ opacity: 0, y: -20 }}
