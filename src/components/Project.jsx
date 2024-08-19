@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { EffectCoverflow, Pagination, Navigation } from 'swiper/modules';
 import { motion } from 'framer-motion';
+import { useMediaQuery } from 'react-responsive';
 import 'swiper/css';
 import 'swiper/css/effect-coverflow';
 import 'swiper/css/pagination';
@@ -56,8 +57,17 @@ function Project() {
     const [swiper, setSwiper] = useState(null);
     const [activeIndex, setActiveIndex] = useState(0);
 
+    const isMobile = useMediaQuery({ maxWidth: 767 });
+    const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 1023 });
+
     const handleSlideChange = (swiper) => {
         setActiveIndex(swiper.realIndex);
+    };
+
+    const getSlidesPerView = () => {
+        if (isMobile) return 1;
+        if (isTablet) return 2;
+        return 3;
     };
 
     return (
@@ -80,17 +90,17 @@ function Project() {
                     effect={'coverflow'}
                     grabCursor={true}
                     centeredSlides={true}
-                    slidesPerView={3}
+                    slidesPerView={getSlidesPerView()}
                     loop={true}
                     coverflowEffect={{
                         rotate: 0,
-                        stretch: 100,
-                        depth: 150,
+                        stretch: isMobile ? 50 : 100,
+                        depth: isMobile ? 100 : 150,
                         modifier: 1.5,
                         slideShadows: false,
                     }}
                     pagination={{ clickable: true }}
-                    navigation={true}
+                    navigation={!isMobile}
                     modules={[EffectCoverflow, Pagination, Navigation]}
                     className="mySwiper"
                     onSwiper={setSwiper}
